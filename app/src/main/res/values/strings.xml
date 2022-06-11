@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">EyePax News</string>
-    <string-array
-        name="news_categories">
+    <string-array name="news_categories">
         <item>general</item>
         <item>business</item>
         <item>entertainment</item>
@@ -9,6 +8,29 @@
         <item>science</item>
         <item>sports</item>
         <item>technology</item>
-
     </string-array>
+
+    <string-array name="sort_by_labels">
+        <item>publishedAt</item>
+        <item>relevancy</item>
+        <item>popularity</item>
+    </string-array>
+
+    <string-array name="language">
+        <item>ar</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>he</item>
+        <item>it</item>
+        <item>nl</item>
+        <item>no</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>sv</item>
+        <item>ud</item>
+        <item>zh</item>
+    </string-array>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
 </resources>

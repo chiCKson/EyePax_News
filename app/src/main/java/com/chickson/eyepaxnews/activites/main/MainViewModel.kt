@@ -1,4 +1,4 @@
-package com.chickson.eyepaxnews
+package com.chickson.eyepaxnews.activites.main
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -23,8 +23,14 @@ constructor(
 
     var breakingNews = mutableStateOf(listOf(Article()))
     var selectedCategory = mutableStateOf("")
+    var selectedSortBy = mutableStateOf("")
+    var selectedLangauge = mutableStateOf("")
     var news = mutableStateOf(listOf(Article()))
-
+    var topLabelText = mutableStateOf("Breaking News")
+    var searched = mutableStateOf(false)
+    var filterBarLabels = mutableStateOf(listOf("Filter","Sort By: -", "Language: -"))
+    var searchBarSelected = mutableStateOf(false)
+    var searchQuery = mutableStateOf("")
     fun getTopHeadlines() = viewModelScope.launch {
         newsRepository.getTopHeadlines(category = "sports")
             .onStart {
@@ -66,7 +72,7 @@ constructor(
     }
 
     fun searchNews() = viewModelScope.launch {
-        newsRepository.searchNews(query = "Apple")
+        newsRepository.searchNews(query = searchQuery.value, sortBy = selectedSortBy.value, lang = selectedLangauge.value)
             .onStart {
                 //isLoading.value = true
             }
@@ -76,7 +82,8 @@ constructor(
             .collect { response ->
                 when (response){
                     is NewsResult.Success-> {
-                        println(response.result.size)
+                        news.value = response.result.articles
+                        topLabelText.value = "About ${response.result.totalResults} results for \"${searchQuery.value}\""
                     }
                     is NewsResult.Failure-> {
                         println(response.message)
@@ -88,5 +95,9 @@ constructor(
     fun onSelectedCategoryChange(category: String){
         selectedCategory.value = category
         getNewsByCategories()
+    }
+
+    fun updateFilterBar(){
+        filterBarLabels.value = listOf("Filter","Sort By: ${selectedSortBy.value}", "Language: ${selectedLangauge.value}")
     }
 }

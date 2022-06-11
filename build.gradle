@@ -3,6 +3,7 @@ buildscript {
         compose_version = '1.2.0-beta03'
         kotlin_version = '1.6.21'
         hilt_version = '2.38.1'
+        room_version = '2.4.2'
     }
     repositories {
         google()

@@ -24,12 +24,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "NEWS_API_KEY", '"e27c5aa5abe44184a004c15b7826fcec"'
+            buildConfigField "String", "NEWS_API_KEY", '"828d7745e49049e2a9c97f40fd903fbd"'
             buildConfigField "String", "NEWS_API_URL", '"newsapi.org"'
             buildConfigField "String", "NEWS_API_VERSION", '"v2"'
         }
         release {
-            buildConfigField "String", "NEWS_API_KEY", '"e27c5aa5abe44184a004c15b7826fcec"'
+            buildConfigField "String", "NEWS_API_KEY", '"828d7745e49049e2a9c97f40fd903fbd"'
             buildConfigField "String", "NEWS_API_URL", '"newsapi.org"'
             buildConfigField "String", "NEWS_API_VERSION", '"v2"'
             minifyEnabled false
@@ -74,6 +74,7 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    androidTestImplementation "com.google.truth:truth:1.0.1"
 
 
     implementation 'io.ktor:ktor-client-android:1.5.0'
@@ -88,6 +89,12 @@ dependencies {
 
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "io.coil-kt:coil-compose:2.0.0-rc01"
+
+    /**
+     * Room Database
+     */
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
 
 

@@ -19,7 +19,7 @@
         android:theme="@style/Theme.EyePaxNews"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activites.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.EyePaxNews">
             <intent-filter>
@@ -28,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activites.newsdetails.NewsDetailActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EyePaxNews"/>
     </application>
 
 </manifest>

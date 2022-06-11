@@ -23,16 +23,17 @@ class NewsApi @Inject constructor(private val config: Config) {
         }
     }
 
-    suspend fun searchNews(query: String? = null, from: String? = null, sortBy: String? = null, page: Int? = null): NewsResult<List<Article>> {
+    suspend fun searchNews(query: String? = null, from: String? = null, sortBy: String? = null, lang: String? = null, page: Int? = null): NewsResult<NewsResponse> {
         val response:NewsResponse =  config.client.get(path = "${BuildConfig.NEWS_API_VERSION}/everything"){
             parameter("q",query ?: "")
             parameter("from",from ?: "")
             parameter("sortBy",sortBy ?: "")
+            parameter("language",lang ?: "")
             parameter("pageSize", 20)
             parameter("page", page ?: 1)
         }
         return if (response.status == "ok") {
-            NewsResult.Success(response.articles)
+            NewsResult.Success(response)
         } else {
             NewsResult.Failure(response.message)
         }
