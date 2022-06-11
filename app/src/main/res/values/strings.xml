@@ -33,4 +33,5 @@
         <item>zh</item>
     </string-array>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>

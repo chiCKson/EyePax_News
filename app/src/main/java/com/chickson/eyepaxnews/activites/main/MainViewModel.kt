@@ -31,6 +31,7 @@ constructor(
     var filterBarLabels = mutableStateOf(listOf("Filter","Sort By: -", "Language: -"))
     var searchBarSelected = mutableStateOf(false)
     var searchQuery = mutableStateOf("")
+
     fun getTopHeadlines() = viewModelScope.launch {
         newsRepository.getTopHeadlines(category = "sports")
             .onStart {

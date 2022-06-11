@@ -19,18 +19,26 @@
         android:theme="@style/Theme.EyePaxNews"
         tools:targetApi="31">
         <activity
-            android:name=".activites.main.MainActivity"
+            android:name=".activites.login.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.EyePaxNews">
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.EyePaxNews" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activites.newsdetails.NewsDetailActivity"
+        <activity
+            android:name=".activites.main.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.EyePaxNews"/>
+            android:theme="@style/Theme.EyePaxNews">
+
+        </activity>
+        <activity
+            android:name=".activites.newsdetails.NewsDetailActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EyePaxNews" />
     </application>
 
 </manifest>
