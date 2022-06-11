@@ -8,6 +8,7 @@ import com.chickson.eyepaxnews.models.User
 import com.chickson.eyepaxnews.system.EyePaxDatabase
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,6 +19,7 @@ class UserDaoTest {
     private lateinit var  database: EyePaxDatabase
     private lateinit var dao: UserDao
     val users = listOf<User>(User(username = "erandra",password = "test123"),User(username = "erandraj",password = "test123"))
+
     @Before
     fun setup(){
         database = Room.inMemoryDatabaseBuilder(
@@ -40,4 +42,30 @@ class UserDaoTest {
         assertThat(allUsers).contains(users.first())
     }
 
+
+    @Test
+    fun delete() {
+        dao.insertAll(users = users)
+        dao.delete(users.first())
+        val allUsers =  dao.getAll()
+
+        assertThat(allUsers).doesNotContain(users.first())
+    }
+
+    @Test
+    fun clearAll(){
+        dao.insertAll(users = users)
+        dao.clearUsers()
+
+        val allUsers =  dao.getAll()
+
+        assertThat(allUsers).isEmpty()
+    }
+
+    @Test
+    fun getUserByName() {
+        dao.insertAll(users = users)
+        val user = dao.findByUserName(username = "erandra")
+        assertEquals(user.username,"erandra")
+    }
 }
