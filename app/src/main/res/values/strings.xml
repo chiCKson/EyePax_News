@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">EyePax News</string>
+    <string-array
+        name="news_categories">
+        <item>general</item>
+        <item>business</item>
+        <item>entertainment</item>
+        <item>health</item>
+        <item>science</item>
+        <item>sports</item>
+        <item>technology</item>
+
+    </string-array>
 </resources>

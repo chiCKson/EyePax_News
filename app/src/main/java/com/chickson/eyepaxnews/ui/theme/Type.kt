@@ -22,18 +22,27 @@ val Typography = Typography(
         fontFamily = nunito,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
-    )
-    /* Other default text styles to override
+    ),
     button = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W500,
         fontSize = 14.sp
     ),
     caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+        fontFamily = nunito,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 10.sp
+    ),
+    body2 = TextStyle(
+        fontFamily = nunito,
+        fontWeight = FontWeight.Light,
         fontSize = 12.sp
+    ),
+    h1 = TextStyle(
+        fontFamily = nunito,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp
     )
-    */
+
 )
 

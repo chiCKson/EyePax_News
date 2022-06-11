@@ -1,12 +1,12 @@
 package com.chickson.eyepaxnews.models
 
 data class Article(
-    val author: String,
-    val content: String,
-    val description: String,
-    val publishedAt: String,
-    val source: Source,
-    val title: String,
-    val url: String,
-    val urlToImage: String
+    var author: String? = null,
+    var content: String? = null,
+    var description: String? = null,
+    var publishedAt: String? = null,
+    var source: Source? = null,
+    var title: String? = null,
+    var url: String? = null,
+    var urlToImage: String? = null
 )

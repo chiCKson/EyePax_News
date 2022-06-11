@@ -5,13 +5,14 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-
+import androidx.compose.ui.graphics.Color
 
 
 private val ColorPalette = lightColors(
     primary = PrimaryRed,
     primaryVariant = TertiaryYellow,
     secondary = SecondaryBlue,
+    onPrimary = Color.White,
 
 
     /* Other default colors to override
@@ -25,7 +26,7 @@ private val ColorPalette = lightColors(
 )
 
 @Composable
-fun EyePaxNewsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun EyePaxNewsTheme( content: @Composable () -> Unit) {
     val colors = ColorPalette
 
     MaterialTheme(
