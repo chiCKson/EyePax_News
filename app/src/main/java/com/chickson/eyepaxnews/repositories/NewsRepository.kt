@@ -13,4 +13,8 @@ class NewsRepository @Inject constructor(private val newsSource: NewsApi) {
     fun getTopHeadlines(category: String? = null, country: String? = null) : Flow<NewsResult<List<Article>>> = flow {
         emit(newsSource.getTopHeadlines(category = category, country = country))
     }.flowOn(Dispatchers.IO)
+
+    fun searchNews(query: String? = null, from: String? = null, sortBy: String? = null) : Flow<NewsResult<List<Article>>> = flow {
+        emit(newsSource.searchNews(query = query, from = from, sortBy = sortBy))
+    }.flowOn(Dispatchers.IO)
 }

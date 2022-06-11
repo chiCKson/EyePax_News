@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getTopHeadlines()
+        viewModel.searchNews()
         setContent {
             EyePaxNewsTheme {
                 // A surface container using the 'background' color from the theme

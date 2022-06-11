@@ -36,4 +36,24 @@ constructor(
                 }
             }
     }
+
+    fun searchNews() = viewModelScope.launch {
+        newsRepository.searchNews(query = "Apple")
+            .onStart {
+                //isLoading.value = true
+            }
+            .catch { e ->
+                //isLoading.value = false
+            }
+            .collect { response ->
+                when (response){
+                    is NewsResult.Success-> {
+                        println(response.result.size)
+                    }
+                    is NewsResult.Failure-> {
+                        println(response.message)
+                    }
+                }
+            }
+    }
 }
