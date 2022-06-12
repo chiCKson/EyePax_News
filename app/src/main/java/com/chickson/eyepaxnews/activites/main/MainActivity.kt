@@ -1,6 +1,8 @@
 package com.chickson.eyepaxnews.activites.main
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import androidx.compose.foundation.Image
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -27,18 +29,22 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.chickson.eyepaxnews.R
+import com.chickson.eyepaxnews.activites.login.LoginActivity
 import com.chickson.eyepaxnews.activites.newsdetails.NewsDetailActivity
 import com.chickson.eyepaxnews.models.Article
 import com.chickson.eyepaxnews.network.Config
 import com.chickson.eyepaxnews.network.services.NewsApi
+import com.chickson.eyepaxnews.prefs
 import com.chickson.eyepaxnews.repositories.NewsRepository
 import com.chickson.eyepaxnews.ui.theme.EyePaxNewsTheme
 import com.chickson.eyepaxnews.ui.theme.TransGrey
@@ -60,6 +66,7 @@ class MainActivity : ComponentActivity() {
         viewModel.selectedLangauge.value = "en"
         viewModel.updateFilterBar()
         viewModel.getNewsByCategories()
+
         setContent {
             EyePaxNewsTheme {
                 Surface(
@@ -134,7 +141,9 @@ fun MainView(viewModel: MainViewModel) {
                 },
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor =  MaterialTheme.colors.primary),
-                    modifier = Modifier.fillMaxWidth().height(40.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
                 ) {
                     Text(text = "Save", color =  MaterialTheme.colors.onPrimary )
                 }
@@ -219,7 +228,7 @@ fun MainView(viewModel: MainViewModel) {
                 }
             },
             bottomBar = {
-                Text(text = "Bottom Bar")
+                BottomBar()
             }
         )
     }
@@ -423,6 +432,55 @@ fun SearchBar(viewModel: MainViewModel){
 
 }
 
+@Composable
+fun BottomBar(){
+    val context = LocalContext.current
+    val activity = LocalContext.current as Activity
+    Row(modifier = Modifier
+        .fillMaxWidth().height(100.dp)
+        .padding(horizontal = 50.dp).padding(bottom = 20.dp)
+        .clip(RoundedCornerShape(50.dp))
+        .background(Color.White)
+        .padding(20.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+
+
+    ) {
+        IconButton(onClick = { }) {
+            Image(
+                painter = painterResource(id = R.drawable.home),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.primary)
+            )
+        }
+        IconButton(onClick = { }) {
+            Image(
+                painter = painterResource(id = R.drawable.favourite),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.primary)
+            )
+        }
+        IconButton(onClick = { }) {
+            Image(
+                painter = painterResource(id = R.drawable.profile),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.primary)
+            )
+        }
+
+        IconButton(onClick = {
+            prefs.user = null
+            context.startActivity(Intent(context,LoginActivity::class.java))
+            activity.finish()
+        }) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_logout),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.primary)
+            )
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable

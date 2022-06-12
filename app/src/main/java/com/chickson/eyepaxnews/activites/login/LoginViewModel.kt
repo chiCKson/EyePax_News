@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chickson.eyepaxnews.models.User
 import com.chickson.eyepaxnews.network.NewsResult
+import com.chickson.eyepaxnews.prefs
 import com.chickson.eyepaxnews.repositories.UserRepository
 import com.chickson.eyepaxnews.util.hash
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,12 @@ constructor(
     var username = mutableStateOf("")
     var password = mutableStateOf("")
     var error = MutableLiveData<String>()
+
+    init {
+       if (prefs.user != null){
+           loginSuccess.postValue(true)
+       }
+    }
 
     fun registerUser() {
         viewModelScope.launch {
@@ -51,14 +58,19 @@ constructor(
     fun login() = viewModelScope.launch {
         userRepository.findUserByUserName(username = username.value)
             .onStart {
-            //isLoading.value = true
+
             }
-            .catch { e ->
-                //isLoading.value = false
+            .catch {
+
             }
             .collect { response ->
-                if (password.value.hash() == response.password){
+
+                if (response != null && password.value.hash() == response.password){
+                    response.password = null
+                    prefs.user = response
                     loginSuccess.value = true
+                } else {
+                    error.postValue("Invalid Credentials")
                 }
             }
     }

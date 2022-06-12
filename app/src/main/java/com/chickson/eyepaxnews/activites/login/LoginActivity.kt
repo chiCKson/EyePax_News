@@ -41,6 +41,8 @@ class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         viewModel.error.observe(this){
             Toast.makeText(this,it,Toast.LENGTH_LONG).show()
         }
@@ -115,7 +117,7 @@ fun LoginView(viewModel: LoginViewModel) {
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 5.dp),
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-                    var image = if (passwordVisible)
+                    val image = if (passwordVisible)
                         Icons.Filled.Visibility
                     else Icons.Filled.VisibilityOff
 
