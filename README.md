@@ -7,7 +7,9 @@ EyePaxNews  is a reasonably decent news app for Android. It sources its news fro
 UI is from [Figma](https://www.figma.com/community/file/975336242667665188) designer [botpablo](https://www.figma.com/@botpablo)
 
 
+## Demo
 
+![](https://erandra.me/wp-content/uploads/2022/06/ezgif.com-gif-maker.gif)
 
 
 ## Permissions
