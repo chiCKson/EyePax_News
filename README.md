@@ -9,7 +9,7 @@ UI is from [Figma](https://www.figma.com/community/file/975336242667665188) desi
 
 ## Demo
 
-![](https://erandra.me/wp-content/uploads/2022/06/ezgif.com-gif-maker.gif)
+![](https://github.com/chiCKson/EyePax_News/blob/master/readme/ezgif.com-gif-maker.gif)
 
 
 ## Permissions
