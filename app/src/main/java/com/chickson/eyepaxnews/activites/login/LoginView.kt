@@ -12,15 +12,21 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.chickson.eyepaxnews.repositories.UserRepository
+import com.chickson.eyepaxnews.system.EyePaxDatabase
 import com.chickson.eyepaxnews.ui.theme.lightGrey
+import com.chickson.eyepaxnews.util.TestTags
+import javax.inject.Inject
 
 @Composable
-fun LoginView(viewModel: LoginViewModel) {
+fun LoginView(viewModel: LoginViewModel, testTags: TestTags) {
+
     var username by remember { mutableStateOf(TextFieldValue("")) }
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
@@ -46,7 +52,7 @@ fun LoginView(viewModel: LoginViewModel) {
                     username = it
                     viewModel.username.value = it.text
                 },
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp).testTag(testTags.usernameTag)
             )
             OutlinedTextField(
                 value = password,
@@ -65,7 +71,7 @@ fun LoginView(viewModel: LoginViewModel) {
                     viewModel.password.value = it
                 },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 5.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 5.dp).testTag(testTags.passwordTag),
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     val image = if (passwordVisible)

@@ -10,6 +10,7 @@ import com.chickson.eyepaxnews.network.NewsResult
 import com.chickson.eyepaxnews.prefs
 import com.chickson.eyepaxnews.repositories.UserRepository
 import com.chickson.eyepaxnews.util.hash
+import dagger.Provides
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
@@ -30,10 +31,16 @@ constructor(
     var error = MutableLiveData<String>()
 
     init {
-       if (prefs.user != null){
-           loginSuccess.postValue(true)
-       }
+        try {
+            if (prefs.user != null){
+                loginSuccess.postValue(true)
+            }
+        } catch (e: Exception){
+            loginSuccess.postValue(false)
+        }
+
     }
+
 
     fun registerUser() {
         viewModelScope.launch {
@@ -54,6 +61,7 @@ constructor(
                 }
         }
     }
+
 
     fun login() = viewModelScope.launch {
         userRepository.findUserByUserName(username = username.value)
